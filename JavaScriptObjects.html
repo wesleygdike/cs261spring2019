@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JavaScript Objects</title>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<!-- Author Wesley G. Dike -->
+<!-- Created 101118 -->
+<!-- For Class CS261:02 JavaScript Objects Presentation -->
+</head>
+<body>
+
+<h1>JavaScript Objects</h1>
+<h2>Trick-or-Treat!</h2>
+<p>Create a few trick-or-treaters and give them candy.</p>
+Name: <input type="text" id="name"></input>
+Costume: <input type="text" id="costume"></input>
+<button onclick="pushTOT()">Create Trick-or-treater</button>
+
+<div id="DingDong"></div>
+
+<h3>Trick-or-Treaters</h3>
+<p id="output"></p>
+<script> //Creating trick-or-treaters
+var TOTs = [];
+
+function TOT(name, costume, candy){ //TOT stands for Trick-or-treater
+  this.name = name;
+  this.costume = costume;
+  this.candy = candy;
+}
+
+function pushTOT(){
+  var name = document.getElementById("name").value;
+  var costume = document.getElementById("costume").value;
+  TOTs.push(new TOT(name, costume));
+  updateTOTList();
+  resetDingDong();
+}
+
+function updateTOTList(){ //Updates the list of trick-or-treaters on the page
+  var output = "";
+  for(let t in TOTs){
+    output += "Name: " + TOTs[t].name + ", Costume: " + TOTs[t].costume;
+    if (TOTs[t].candy){
+      output += ", Candy: ";
+      for(let c in TOTs[t].candy){
+        output += TOTs[t].candy[c] + ", ";
+      }
+    } else {
+      output += ", No Candy"
+    }
+    output += "</br>";
+  }
+  document.getElementById("output").innerHTML = output; //changes the HTML of the output p element
+}
+
+function getTOT(){ //simulate a Trick-or-Treater coming to the door
+  var output = "<h3>DING! DONG! Trick-or-Treat!</h3><p>";  //add a header
+  var i = Math.floor(Math.random() * TOTs.length - 1) + 1; //get a random trick-or-treater from the list
+  output += TOTs[i].name + " is here, dressed as " + TOTs[i].costume + ", in thier bag they have: "; //show who is at the door
+  if(TOTs[i].candy){ //Do they have any candy?
+    for(let c in TOTs[i].candy){
+      output += TOTs[i].candy[c] + ", ";
+    }
+  } else {
+    output += "No Candy." // nope, no candy
+  }
+  output += "</p>";
+  output += 'What candy did you give them: <input id="candyinput" type="text"></input>' //ask for what type of candy to give the Trick-or-Treater
+  + '<button onclick="giveCandy(' + i + ')">Give</button></br>'; //This button actually gives the candy
+  output += '<button onclick="getTOT()">Get Trick-or-Treater</button>'; //adds the getTOT button
+  document.getElementById("DingDong").innerHTML = output; //changes the HTML of the DingDong div element
+}
+
+function resetDingDong(){
+  document.getElementById("DingDong").innerHTML ='<button onclick="getTOT()">Get Trick-or-Treater</button>'; //Clears the trick-or-treater at the door simulator
+}
+
+function giveCandy(i){ //assigns new candies to the cute little trick-or-treaters
+  if(TOTs[i].candy){
+    TOTs[i].candy.push(document.getElementById("candyinput").value);
+  } else {
+    TOTs[i].candy = [(document.getElementById("candyinput").value)];
+  }
+  updateTOTList();
+}
+
+</script>
+</body>
+</html>

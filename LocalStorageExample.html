@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Local Storage Example</title>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+<body onload="preload()">
+
+<div>
+<!-- Start Introduction-->
+<div><h1>ShelfQuest Character Page</h1>
+<p>This example of Character creation page will demonstrate the structure
+and utillities of the localstoreage functions. We will do this by helping you
+create a ShelfQuest Character. This Character will persist between visits to the
+web page. If we get fancy with it we may built on it for later applications.</p></div>
+<!-- End Introduction-->
+
+<!-- Character Creation-->
+<div><h2>Toy Creation</h2><h1 id="result"></h1>
+Name of Toy: <input id="input_name"></input></br>
+Type of Toy: <input id="input_toy"></input></br>
+special Abillities: <input id="input_special"></input></br>
+Toy Limitations or Weaknesses: <input id="input_weakness"></input></br>
+Name of Owner: <input id="input_owner"></input></br>
+<button id="create_char_btn" onclick="saveToy()">Save Toy</button>
+<button id="store_char_btn" onclick="storeJSONToy()">Store JSON Toy</button>
+<button id="displayJSON_btn" onclick="displayJSON()">Display JSON</button></br>
+<p id="intro_display"></p>
+</div>
+<!-- End Character Creation-->
+</div>
+<script>
+/*AJAX Example Stealing the functions from here...*/
+var toys = [];
+
+function preload(){
+  if(typeof(Storage) !== "undefined"){
+    /*GETT THAT DATA BACK!*/
+    var toy = JSON.parse(localStorage.getItem("toy"));
+    /*name*/      document.getElementById("input_name").value = toy.name;
+    /*toy*/       document.getElementById("input_toy").value = toy.toy;
+    /*special*/   document.getElementById("input_special").value = toy.special;
+    /*weakness*/  document.getElementById("input_weakness").value = toy.weakness;
+    /*owner*/     document.getElementById("input_owner").value = toy.owner;
+    document.getElementById("intro_display").innerHTML = toy.intro;
+  }else {
+    document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+  }
+}
+
+function Toy(name, type, special, weakness, owner){
+  this.name = name;
+  this.toy = type;
+  this.special = special;
+  this.weakness = weakness;
+  this.owner = owner;
+  this.intro = "Hi, my name is " + this.name + ". I am a " + this.toy
+  +  ". I can " + this.special + ". " + this.weakness + " really gets me down. "
+  + "My owner " + this.owner + " really loves playing with me.";
+}
+var woody = new Toy("Woody", "cowboy doll", "voice box and slick hat topped with friendship", "Jelousy", "Andy");
+
+function saveToy(){
+  var toy = new Toy(
+    document.getElementById("input_name").value,
+    document.getElementById("input_toy").value,
+    document.getElementById("input_special").value,
+    document.getElementById("input_weakness").value,
+    document.getElementById("input_owner").value
+  );
+  /*IT PUTTS THE DATA IN THE STORAGE!*/
+  localStorage.setItem("toy", JSON.stringify(toy));
+  document.getElementById("intro_display").innerHTML = toy.intro;
+}
+
+function storeJSONToy(){
+  var toy = new Toy(
+    document.getElementById("input_name").value,
+    document.getElementById("input_toy").value,
+    document.getElementById("input_special").value,
+    document.getElementById("input_weakness").value,
+    document.getElementById("input_owner").value
+  );
+  toys.push(toy);
+}
+
+function displayJSON(){
+  alert(JSON.stringify(toys))
+}
+</script>
+</body>
+</html>

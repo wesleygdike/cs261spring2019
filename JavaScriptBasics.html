@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JavaScript Basics</title>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<!-- Author Wesley G. Dike -->
+<!-- Created 100918 -->
+<!-- For Class CS261:02 JavaScript Basics Presentation -->
+</head>
+<body>
+
+<h1>JavaScript Basics</h1>
+<h3>Variables</h3>
+<p id="output"></p>
+<h3>Conclustions from Experimenting</h3>
+<p id="conclusions">
+  Null values and Booleans are treated as numbers when compared to eachother and numbers,
+  but they are converted to strings when compared to other strings.</br>
+  Dates are treated as strings.</br>
+  Null and false Booleans are equal to 0.</br>
+  True Booleans count as 1.</br>
+</p>
+
+<script>
+  //Declaration using identifiers
+  /*Variable Types*/var number, boolean, string, date, nullvalue, undefinedvalue;
+
+  //Assignment of values to the declared variables
+  number = 5;
+  boolean = true;
+  string = 'string'; // can use single or double quotes
+  date = new Date();
+  nullvalue = null;
+  undefinedvalue; // an undefined value is a value without an assignment
+
+  //Experimenting with variable interactions
+  var output = "Experimenting with Variables: </br>";
+  output += "Number: " + number + "</br>";
+  output += "Number plus a Number: " + (number + number) + "</br> ";
+  output += "Boolean: " + boolean + "</br>";
+  output += "Boolean plus a Boolean: " + (boolean + boolean) + "</br>";
+  output += "Number plus a Boolean: " + (number + boolean) + "</br>";
+  output += "String: " + string + "</br>";
+  output += "String plus a String: " + (string + string) + "</br>";
+  output += "String plus a Number: " + (string + number) + "</br>";
+  output += "String plus a Boolean: " + (string + boolean) + "</br>";
+  output += "Date: " + date + "</br>";
+  output += "Date plus a Date: " + (date + date) + "</br>";
+  output += "Date plus a Number: " + (date + number) + "</br>";
+  output += "Date plus a String: " + (date + string) + "</br>";
+  output += "Date plus a Boolean: " + (date + boolean) + "</br>";
+  output += "Null: " + nullvalue + "</br>";
+  output += "Null plus a Null: " + (nullvalue + nullvalue) + "</br>";
+  output += "Null plus a Number: " + (nullvalue + number) + "</br>";
+  output += "Null plus a String: " + (nullvalue + string) + "</br>";
+  output += "Null plus a Boolean: " + (nullvalue + boolean) + "</br>";
+  output += "Null plus a Date: " + (nullvalue + date);
+
+  //Add the output value to the output p tag
+  document.getElementById("output").innerHTML = output;
+</script>
+
+<h3>Loops</h3>
+<p id="for">For Loops are best used in a set process which must be iterated a specific number of times.</br></p>
+<script> //building a matrix of numbers
+  var output = '';
+  for(var i = 0; i < 5; i++){
+    for(var j = 0; j < 5; j++){
+      output += (j + i) + " ";
+    }
+    output += "</br>";
+  }
+  document.getElementById("for").innerHTML += output;
+</script>
+<p id="forin">For/in Loops are best used in situations where the opperations must be done for each member of a group.</br></p>
+<script> //adding tax to a variable number of total values
+  var output = "Totals: </br>";
+  var totals = [30.51, 45.87, 5.65, 6.87, 756.12, 8.00, 999.99];
+  var taxAmt = .08;
+  var i;
+  for(i in totals){
+    output += totals[i] + ", ";
+    output += "W/ Tax: " + (totals[i] * (1 + taxAmt)) + "</br>";
+  }
+  document.getElementById("forin").innerHTML += output;
+</script>
+<p id="while">While Loops should be used for checking on the status of a given condition each itereation and continuing if it is still true.</br></p>
+Input A Number:<input type="number" id="whileNumInput"></input>
+<script>
+  function whileBtnClk(){
+    var input = document.getElementById("whileNumInput").value;
+    var output = 'This is the output: ';
+    while(input-- > 0){ //while your input value is above 0 continue iterating
+      output += input + ", ";
+    }
+    alert(output);
+  }
+</script>
+<button onclick="whileBtnClk()">Test it</button>
+<p id="dowhile">Do While Loops function similar to while loops save that the code block is executed prior to the function check.</p>
+Input A Number:<input type="number" id="dowhileNumInput"></input>
+<script>
+  function dowhileBtnClk(){
+    var input = document.getElementById("dowhileNumInput").value;
+    var output = 'This is the output: ';
+    do{ //while your input value is above 0 continue iterating
+      output += input + ", ";
+    }while(input-- > 0);
+    alert(output);
+  }
+</script>
+<button onclick="dowhileBtnClk()">Test it</button>
+<h3>Conditional Statements</h3>
+<p id="comparisons"></p>
+<script>
+  var output = "Comparisons available are: </br>";
+  var types = {
+    number : {type: "number", value: 50},
+    string : {type: "string", value: "string"},
+    boolean : {type: "boolean", value: true}
+  };
+  output += "comparing numbers is fairly easy: </br>"
+  + 50 + " == " + "50" + " = " + (50 == 50) + ", "
+  + 49 + " > " + "50" + " = " + (49 > 50)
+  + 50 + " == " + "50" + " = " + (50 == 50) + ", " + "</br>";
+
+  document.getElementById("comparisons").innerHTML = output;
+</script>
+<p id="if">If</p>
+<p id="else">Else</p>
+<p id="elseif">Else if</p>
+<p id="switch">switch</p>
+
+<h3>Functions</h3>
+<p id="Foutput">output</p>
+
+<h3>Arrays</h3>
+
+<h3>Associative Arrays</h3>
+
+
+
+
+
+</body>
+</html>

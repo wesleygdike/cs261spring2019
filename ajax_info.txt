@@ -1,0 +1,33 @@
+[
+  {
+    "name":"grup",
+    "toy":"Robo guppy",
+    "special":"Can hear and obey",
+    "weakness":"Low Batteries",
+    "owner":"Crump","intro":"Hi, my name is grup. I am a Robo guppy. I can Can hear and obey. Low Batteries really gets me down. My owner Crump really loves playing with me."
+  },
+  {
+    "name":"Stretch Armstring",
+    "toy":"Stretchy doll",
+    "special":"Skrength",
+    "weakness":"Freezers",
+    "owner":"Crump",
+    "intro":"Hi, my name is Stretch Armstring. I am a Stretchy doll. I can Skrength. Freezers really gets me down. My owner Crump really loves playing with me."
+  },
+  {
+    "name":"Buzz Lightyear",
+    "toy":"Space Ranger",
+    "special":"Flying",
+    "weakness":"Self Worth",
+    "owner":"Andy",
+    "intro":"Hi, my name is Buzz Lightyear. I am a Space Ranger. I can Flying. Self Worth really gets me down. My owner Andy really loves playing with me."
+  },
+  {
+    "name":"Woody",
+    "toy":"Cowboy Doll",
+    "special":"Friendship",
+    "weakness":"Jealousy",
+    "owner":"Andy",
+    "intro":"Hi, my name is Woody. I am a Cowboy Doll. I can Friendship. Jealousy really gets me down. My owner Andy really loves playing with me."
+  }
+]

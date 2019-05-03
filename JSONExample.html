@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JSON Example Page</title>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<!-- Author Wesley G. Dike -->
+<!-- Created 100118 -->
+<!-- For Class CS261:02 JSON Presentation -->
+</head>
+<body>
+  <script>
+    var exampleJSONData = '{"objekt":{"string":"words","number":101,"array":["one","two","three"],"bool":true,"null":null}}';
+
+  </script>
+
+  <!-- Intro and information -->
+  <h1>JSON Example Page</h1>
+  <p>JSON is similar to JavaScript object syntax, but requires all identifiers
+  to be with in "" (double quotes).<br/>
+  JSON is plain text which allows it to be used in many ways and programming
+  languages.<br/>
+  Mostly used in browser/server comunications.<br/>
+  </p>
+
+  <!-- CONSUMPTION of exampleJSONData -->
+  <h2>Getting data from a JSON Object</h2>
+  <p>This information comes from a preloaded JSON Object or string.</p>
+  <p id="demo"></p>
+  <script>
+  var thingsYouShouldntStoreInJSON =/*JSON data in stringify formatt*/ '{"arrayOfNoNos":[{"type":"functions","why":"Functions are difficult to convert back once in JSON formatt","possible":true},{"type":"dates","why": "Dates are not supported in JSON","possible":false},{"type":"undefinedDataTypes","why": "Do not use","possible":false}]}';
+  var JSONData = JSON.parse(thingsYouShouldntStoreInJSON); // collecting the data from the JSON string
+  var outputString = "Things you should not store in a JSON object: "; //Output that we will add JSON data to
+  var x; //counter var
+  for(x in JSONData.arrayOfNoNos){ //for each object in the array perform these steps
+    //Append the string to the outputString
+    outputString += JSONData.arrayOfNoNos[x].type + " " + JSONData.arrayOfNoNos[x].why + ". ";
+    //--ANY ONE KNOW HOW TO INSERT A NEXT LINE?--
+  }
+  document.getElementById("demo").innerHTML = outputString;
+  </script>
+
+  <!-- CREATION of exampleJSONData -->
+  <h2>Create Your Own JSON Object</h2>
+  <p>Input values below to see what they would look like in a JSON Object.</p>
+  String Input  |<input type="text" id="stringinput"></input></br>
+  Number Input  |<input type="number" id="numberinput"></input></br>
+  Boolean Input  |<input type="checkbox" id="checkboxinput"></input>--checkbox isn't working-- </br>
+  <script>
+  function createJSON(){
+    var JSONData = {};
+    JSONData.string = document.getElementById("stringinput").value;
+    JSONData.number = document.getElementById("numberinput").value;
+    JSONData.boolean = document.getElementById("checkboxinput".value);//--NOT Currently working. Need to find out how to collect a boolean value off of a checkbox input--
+    alert(JSON.stringify(JSONData));
+  }
+  </script>
+  <button id="createJSONBtn" onclick="createJSON()">Create</button></br>
+
+<!--
+JSON CREATION: Use text fields to enable individualized JSONData object creation(export as .txt file?)
+JSON CONSUMPTION: Use alert("Text"); to show data from JSONData using a drop down
+
+-->
+
+</body>
+</html>

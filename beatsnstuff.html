@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Beats n' Stuff</title>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<style>
+  table.fixed {
+    table-layout:fixed;
+    border: none;
+  }
+  table.fixed td {
+    table-layout:fixed;
+    width:130px;
+    hight:130px;
+    overflow:hidden;
+    word-wrap:break-word;
+  }
+  .apple {
+      width: 120px;
+      height: auto;
+      position: relative;
+      -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+      -webkit-animation-duration: .08s; /* Safari 4.0 - 8.0 */
+      -webkit-animation-direction: reverse; /* Safari 4.0 - 8.0 */
+      animation-name: example;
+      animation-duration: .08s;
+      animation-direction: reverse;
+  }
+
+  /* Safari 4.0 - 8.0 */
+  @-webkit-keyframes example {
+      0%   {width:120px; height:auto;}
+      50%  {width:115px; height:auto;}
+      100% {width:120px; height:auto;}
+  }
+
+  /* Standard syntax */
+  @keyframes example {
+    0%   {width:120px; height:auto;}
+    50%  {width:115px; height:auto;}
+    100% {width:120px; height:auto;}
+  }
+
+  .trns {
+      width: 50px;
+      height: 25px;
+      -webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
+      transition: width 2s;
+  }
+
+  .trns:hover {
+      width: 450px;
+      -ms-transform: translate(10px,0px); /* IE 9 */
+      -webkit-transform: translate(10px,0px); /* Safari */
+      transform: translate(10px,0px); /* Standard syntax */
+  }
+</style>
+</head>
+<body class="content" onkeypress="capturekey(event)">
+
+<h1>Beats n' Stuff</h1>
+<div><p>Use your keyboard number keys listed bellow to pump sick beats.</p></div>
+
+<table class="fixed center">
+<td><img id="one"  src="img\keyboard-key-1.png" alt="The number 1"></td>
+<td><img id="two"  src="img\keyboard-key-2.png" alt="The number 2"></td>
+<td><img id="three"  src="img\keyboard-key-3.png" alt="The number 3"></td>
+</table>
+<!-- Audio Elements -->
+<audio id="oneAudio">
+  <source src="audio\fpt.mp3" type="audio/mpeg">
+</audio>
+<audio id="twoAudio">
+  <source src="audio\kert.mp3" type="audio/mpeg">
+</audio>
+<audio id="threeAudio">
+  <source src="audio\tss.mp3" type="audio/mpeg">
+</audio>
+<!-- END Audio Elements -->
+
+<!-- Comments -->
+<input id="user" type="text" value="User" class="trns"></input>
+<textarea id="comment" rows="8" cols="80">What you have to say</textarea>
+<button id="commentbtn" onclick="newComment()">comment</button>
+<div id="commetarea"><div>
+  <script>
+    //cature key presses for 1 2 & 3
+    function capturekey(event){
+      switch(event.keyCode){
+        case 49: pressed("one");Break;
+        case 50: pressed("two");Break;
+        case 51: pressed("three");Break;
+      }
+    }
+    function pressed(key){
+      //animate button presses with img size
+      animateme(key);
+      //play sounds on button press
+      document.getElementById(key + "Audio").play();
+      //activate audio visual indicator
+      //indicate();
+    }
+
+    /*ANIMATION*/
+    function animateme(key){
+      var x = document.getElementById(key);
+        x.classList.add('apple');
+        x.addEventListener("webkitAnimationEnd", myEndFunction);
+    }
+    function myEndFunction(event){
+      event.target.classList.remove('apple');
+    }
+    /*END ANIMATION*/
+
+    /*TRANSITIONS*/
+    /*function indicate(){
+      var x = document.querySelector(".trns");
+        x.style.width = 20px;
+    }*/
+    /*END TRANSITIONS*/
+
+    /*Comments*/
+    function newComment() {
+      var comment = document.createElement("div");
+      var text = document.createTextNode( document.getElementById("user").value + ": " + document.getElementById("comment").value);
+      comment.appendChild(text);
+      document.getElementById("commetarea").appendChild(comment);
+    }
+    /*END Comments*/
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Meal Planner</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<!-- Author Wesley G. Dike -->
+<!-- Created 121518 -->
+<!-- For Class CS261:02 final Presentation -->
+</head>
+<body onload="preload()">
+
+<h1>Meal Planner</h1>
+<p>Enter your meal names, they will be kept in your local storage.
+  You can then generate a meal plan from the meals you have stored.</p>
+<div id="mealEntry">
+  Name of meal: <input id="input_name"></input></br>
+  Ingredients: <input id="input_ingredients"></input></br>
+  Rating: <input id="input_rating"></input></br>
+  <!-- Cooktime/preptime/makepicklistingredients/numericalrating/ingredientsQnts -->
+  <button id="add_meal_btn" onclick="addMeal()">Add Meal</button>
+</div>
+
+<div id="mealList">
+  <h3>Your Saved Meals</h3>
+  <table id="meals_display">
+    <tr>
+      <th>Name</th>
+      <th>Ingredients</th>
+      <th>Rating</th>
+    </tr>
+  </table>
+  <button id="clear_meals_btn" onclick="clearMeals()">Clear Meals</button>
+
+</div>
+
+<div id="mealPlanGenerator">
+  <h3>Meal Plan</h3>
+  <button id="generate_meal_plan_btn" onclick="genMealPlan()">Generate Meal Plan</button>
+  <table id="meal_plan_display">
+    <tr>
+      <th>Name</th>
+      <th>Ingredients</th>
+      <th>Rating</th>
+    </tr>
+  </table>
+</div>
+<!-- The snackbar -->
+<div id="snackbar">Some text some message..</div>
+<script>
+var MEALS = JSON.parse(localStorage.getItem("MEALS"));
+var NUMBERS = [7];
+var display = document.getElementById("meals_display");
+var plandisplay = document.getElementById("meal_plan_display");
+var clearTable = "<tr><th>Name</th><th>Ingredients</th><th>Rating</th></tr>";
+
+  function preload(){
+    display.innerHTML = clearTable;
+      for (let i = 0; i < MEALS.length; i++) {
+          let row = document.createElement("tr");
+          addCell(MEALS[i].name, row);
+          addCell(MEALS[i].ingredients, row);
+          addCell(MEALS[i].rating, row);
+          display.appendChild(row);
+      }
+    plandisplay.innerHTML = clearTable;
+      for (let i = 0; i < NUMBERS.length; i++) {
+          let row = document.createElement("tr");
+          addCell(MEALS[NUMBERS[i]].name, row);
+          addCell(MEALS[NUMBERS[i]].ingredients, row);
+          addCell(MEALS[NUMBERS[i]].rating, row);
+          plandisplay.appendChild(row);
+      }
+  }
+
+  function addCell(text, row){
+      var cell = document.createElement("th");
+      var text = document.createTextNode(text);
+      cell.appendChild(text);
+      row.appendChild(cell);
+  }
+
+  function clearMeals(){
+
+      MEALS = [];
+      localStorage.setItem("MEALS", JSON.stringify(MEALS));
+      toastMessage('Meals Cleared');
+      preload();
+
+  }
+
+  function addMeal(){
+    var meal = {};
+    meal.name = document.getElementById("input_name").value;
+    meal.ingredients = document.getElementById("input_ingredients").value;
+    meal.rating = document.getElementById("input_rating").value;
+    MEALS.push(meal);
+    localStorage.setItem("MEALS", JSON.stringify(MEALS));
+    toastMessage('Meal has been added');
+    preload();
+  }
+
+  function genMealPlan(){
+    for(var i = 0; i < 7; i++){
+      NUMBERS[i] = Math.floor((Math.random() * MEALS.length));
+    }
+    localStorage.setItem("NUMBERS", JSON.stringify(NUMBERS));
+    toastMessage('Plan Generated');
+    preload();
+  }
+
+function toastMessage(text) {
+  // Get the snackbar DIV
+  var x = document.getElementById("snackbar");
+  x.innerHTML = text;
+  // Add the "show" class to DIV
+  x.className = "show";
+
+  // After 3 seconds, remove the show class from DIV
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+</script>
+
+</body>
+</html>
