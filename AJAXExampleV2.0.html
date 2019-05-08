@@ -6,58 +6,74 @@
 </head>
 <body>
 
-<div id="content"></div>
-<script>
-    function handleResponse(response) {
-    for (var i = 0; i < response.items.length; i++) {
-    var item = response.items[i];
-    document.getElementById("content").innerHTML += "<br>" + item.volumeInfo.title;
-    }
-}
-</script>
-<script src=""></script>
-
 <h1 class="grey">AJAX Demo Storing and accessing JSON/NOSQL DATABASE</h1>
-<p id="demo">Click the button to load the toy data.</p>
-<button onclick="loadDoc()">AJAX</button>
+<p id="demo">Click the button to load the Book data from the GoogleBook API.</p>
+<button onclick="getBookDetails('off+to+be+Wizard')">AJAX</button>
 
-<table id="toy_display">
+<table id="book_display">
   <tr>
-    <th>Name</th>
-    <th>Type Of Toy</th>
-    <th>Speacial Abillity</th>
-    <th>Weakness</th>
-    <th>Owner</th>
-    <th>Introduction</th>
+    <th>Thumbnail</th>
+    <th>Title</th>
+    <th>Author</th>
   </tr>
 </table>
 
 <script>
-var display = document.getElementById("toy_display");
+var display = document.getElementById("book_display");
 
-function loadDoc() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-    //  toys = JSON.parse(this.responseText);
-    //  for(let x in toys){
-    //    toyDataDisplay(toys[x]);
-    //  }
+function getBookDetails(searchText) {
+    // prepareSearchText(searText); 
+    var xmlhttp = new XMLHttpRequest();
+    var url = "https://www.googleapis.com/books/v1/volumes?q=" + searchText;
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var x = JSON.parse(xmlhttp.responseText);
+            callback(x);
+        }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+}
+function callback(x) {
+    //do things with your data here
+    for (var i = 0; i < x.items.length; i++) {
+        bookDataDisplay(x.items[i].volumeInfo);
     }
-  };
-  xhttp.open("GET", "https://www.googleapis.com/books/v1/volumes?q=harry+potter&callback=handleResponse", true);
-  xhttp.send();
+    
 }
 
-function toyDataDisplay(toy){
-  var row = document.createElement("tr");
-  for(let x in toy){
-    var cell = document.createElement("th");
-    var text = document.createTextNode(toy[x]);
+function bookDataDisplay(book){
+    var row = document.createElement("tr");
+    //Thumbnail
+    newImageCell(book.imageLinks["thumbnail"],row);
+    //Title
+    newTextCell(book.title,row);
+    //Authors
+    for(author in book.authors){
+        newTextCell(book.authors[author ],row);
+    }
+  display.appendChild(row);
+}
+
+function newImageCell(src,row) {
+  let cell = document.createElement("th");
+  let img = new Image();
+  img.src = src;  
+  cell.appendChild(img);
+  row.appendChild(cell);
+}
+
+function newTextCell(inputText,row) {
+    let cell = document.createElement("th");
+    let text = document.createTextNode(inputText);
     cell.appendChild(text);
     row.appendChild(cell);
-  }
-  display.appendChild(row);
+}
+
+// Break apart words and add '+' between them with no spaces
+function prepareSearchText(searText) {
+
 }
 </script>
 </body>
