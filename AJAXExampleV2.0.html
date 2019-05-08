@@ -1,18 +1,64 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Books API Example</title>
-  </head>
-  <body>
-    <div id="content"></div>
-    <script>
-      function handleResponse(response) {
-      for (var i = 0; i < response.items.length; i++) {
-        var item = response.items[i];
-        // in production code, item.text should have the HTML entities escaped.
-        document.getElementById("content").innerHTML += "<br>" + item.volumeInfo.title;
-      }
+<head>
+<title>AJAX</title>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+<body>
+
+<div id="content"></div>
+<script>
+    function handleResponse(response) {
+    for (var i = 0; i < response.items.length; i++) {
+    var item = response.items[i];
+    document.getElementById("content").innerHTML += "<br>" + item.volumeInfo.title;
     }
-    </script>
-    <script src="https://www.googleapis.com/books/v1/volumes?q=harry+potter&callback=handleResponse"></script>
-  </body>
+}
+</script>
+<script src="https://www.googleapis.com/books/v1/volumes?q=harry+potter&callback=handleResponse"></script>
+
+<h1 class="grey">AJAX Demo Storing and accessing JSON/NOSQL DATABASE</h1>
+<p id="demo">Click the button to load the toy data.</p>
+<button onclick="loadDoc()">AJAX</button>
+
+<table id="toy_display">
+  <tr>
+    <th>Name</th>
+    <th>Type Of Toy</th>
+    <th>Speacial Abillity</th>
+    <th>Weakness</th>
+    <th>Owner</th>
+    <th>Introduction</th>
+  </tr>
+</table>
+
+<script>
+var display = document.getElementById("toy_display");
+
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     toys = JSON.parse(this.responseText);
+     for(let x in toys){
+       toyDataDisplay(toys[x]);
+     }
+    }
+  };
+  xhttp.open("GET", "ajax_info.txt", true);
+  xhttp.send();
+}
+
+function toyDataDisplay(toy){
+  var row = document.createElement("tr");
+  for(let x in toy){
+    var cell = document.createElement("th");
+    var text = document.createTextNode(toy[x]);
+    cell.appendChild(text);
+    row.appendChild(cell);
+  }
+  display.appendChild(row);
+}
+</script>
+</body>
 </html>
