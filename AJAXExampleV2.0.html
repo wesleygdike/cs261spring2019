@@ -15,7 +15,7 @@
     }
 }
 </script>
-<script src="https://www.googleapis.com/books/v1/volumes?q=harry+potter&callback=handleResponse"></script>
+<script src=""></script>
 
 <h1 class="grey">AJAX Demo Storing and accessing JSON/NOSQL DATABASE</h1>
 <p id="demo">Click the button to load the toy data.</p>
@@ -39,13 +39,13 @@ function loadDoc() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-     toys = JSON.parse(this.responseText);
-     for(let x in toys){
-       toyDataDisplay(toys[x]);
-     }
+    //  toys = JSON.parse(this.responseText);
+    //  for(let x in toys){
+    //    toyDataDisplay(toys[x]);
+    //  }
     }
   };
-  xhttp.open("GET", "ajax_info.txt", true);
+  xhttp.open("GET", "https://www.googleapis.com/books/v1/volumes?q=harry+potter&callback=handleResponse", true);
   xhttp.send();
 }
 
