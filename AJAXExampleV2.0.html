@@ -7,9 +7,12 @@
 <body>
 
 <h1 class="grey">AJAX Demo Storing and accessing JSON/NOSQL DATABASE</h1>
-<p id="demo">Click the button to load the Book data from the GoogleBook API.</p>
-<button onclick="getBookDetails('off+to+be+Wizard')">AJAX</button>
+<p id="demo">Input a book title and click the button to load the Book data from the GoogleBook API.</p>
+Book Search <input type="search" id="search"/>
+<!--value is not formatted for optimized search-->
+<button onclick="getBookDetails(document.getElementById('search').value)">AJAX</button>
 
+<!--Table doesn't reload... just appends more rows-->
 <table id="book_display">
   <tr>
     <th>Thumbnail</th>
