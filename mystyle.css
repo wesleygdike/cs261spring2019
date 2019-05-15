@@ -1,24 +1,46 @@
 * {
-  background-color: #474e5d; /* Dark Blue */
-  color: #ffffff;
+  background-color: #0d0e11; /* Dark Blue */
+  font: 14px "Lucida Console", sans-serif;
+  color: #84cfe6;
 }
 
 body {
-    font: 20px Montserrat, sans-serif;
+    font: 20px "Lucida Console", sans-serif;
     line-height: 1.8;
-    color: #f5f6f7;
 }
 
 p {
     font-size: 16px;
+    border-bottom: 1px solid #84cfe6;
 }
 
 div{
-  border: 5px solid black;
-  border-radius: 15px;
+  border-left: 3px solid rgb(76, 230, 158);
+  padding-left: 5px;
+  border-radius: 2px;
 }
 table{
-  border: 2px solid black;
+  border: 1px solid #84cfe6;
+}
+button{
+  border: 1px solid #84cfe6;
+  padding: 5px;
+  border-radius: 5px;
+}
+button:hover{
+  border: 1px solid #84cfe6;
+  background-color: #84cfe6;
+  color: #0d0e11;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 5px;
+}
+input{
+  padding: 2px;
+  border-bottom: 1px dashed #84cfe6;
+  border-left: 1px solid #84cfe6;
+  border-top: none;
+  border-right: none;
 }
 .grey{
   background-color: Gainsboro;
