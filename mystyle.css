@@ -2,23 +2,56 @@
   background-color: #0d0e11; /* Dark Blue */
   font: 14px "Lucida Console", sans-serif;
   color: #84cfe6;
+  box-sizing: border-box;
+}
+/*Page Grid Structure*/
+.header {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+}
+/* Create two unequal columns that floats next to each other */
+.leftcolumn {   
+  float: left;
+  width: 50%;
+}
+.rightcolumn {
+  float: left;
+  width: 50%;
+  padding-left: 20px;
+}
+.fakeimg {
+  background-color: #191b20;
+  width: 100%;
+  padding: 20px;
+}
+.card {
+   padding: 20px;
+   margin-top: 20px;
+   box-shadow: 0 10px 6px -6px #777;
+   border: 1px solid #84cfe6;
+   border-left: 3px solid #558b9b;
+   border-radius: 5px;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #191b20;
+  margin-top: 20px;
 }
 
-body {
-    font: 20px "Lucida Console", sans-serif;
-    line-height: 1.8;
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
 }
 
-p {
-    font-size: 16px;
-    border-bottom: 1px solid #84cfe6;
-}
-
-div{
-  border-left: 3px solid rgb(76, 230, 158);
-  padding-left: 5px;
-  border-radius: 2px;
-}
 table{
   border: 1px solid #84cfe6;
 }
@@ -48,20 +81,70 @@ input{
 .navy{
   background-color: SteelBlue;
 }
-.offwhite{
+.off#0d0e11{
   background-color: Cornsilk;
 }
 .content {
     max-width: 500px;
     margin: auto;
 }
+/* Custom Scroll Bar*/
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #191b20; 
+}
+ ::-webkit-scrollbar-thumb {
+  background: #84cfe6; 
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #558b9b; 
+}
+
+/* Grid items */
+.timeLineContainer {
+  display: grid;
+  align-items: center;
+  overflow: scroll;
+  width: 80%;
+  height: 80px;
+}
+.lineItem {
+  
+}
+
+/* Card Listview */
+.card-holder {
+  display: grid;
+  align-content: center;
+  row-gap: 15px;
+  width: 100%;
+  height: 80%;
+  overflow-y: scroll;
+  min-width: 250px;
+  min-height: 160px;
+  max-height: 600px;
+  background-color: #191b20;
+}
+.timercard {
+  grid-column: 1;
+  background-color: #0d0e11;
+  border: solid 1px;
+  box-shadow: 0 10px 6px -6px #777;
+  width: 100%;
+  height: 150px;
+  grid-gap: 10px;
+  padding: 10px;
+}
+
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbar {
   visibility: hidden; /* Hidden by default. Visible on click */
   min-width: 250px; /* Set a default minimum width */
   margin-left: -125px; /* Divide value of min-width by 2 */
   background-color: #333; /* Black background color */
-  color: #fff; /* White text color */
+  color: #fff; /* #0d0e11 text color */
   text-align: center; /* Centered text */
   border-radius: 2px; /* Rounded borders */
   padding: 16px; /* Padding */
