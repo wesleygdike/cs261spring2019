@@ -128,6 +128,7 @@ input{
   background-color: #191b20;
 }
 .timercard {
+  display: grid;
   grid-column: 1;
   background-color: #0d0e11;
   border: solid 1px;
