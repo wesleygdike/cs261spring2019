@@ -20,14 +20,19 @@ function addTimerCard() {
     var text = document.createTextNode("started");
     var display = document.createElement("h3");
     var resetImg = document.createElement("img");
+    var deleteImg = document.createElement("img");
     //make assignments
     resetImg.src = "img/reset.png";
     resetImg.displayid = timer.displayid;
     resetImg.addEventListener("click", resetTimer);
     display.id = timer.displayid;
+    deleteImg.src = "img/delete.png";
+    deleteImg.displayid = timer.displayid;
+    deleteImg.addEventListener("click", killTimer);
     display.appendChild(text);
     rightcol.appendChild(display);
     rightcol.appendChild(resetImg);
+    rightcol.appendChild(deleteImg);
     text.nodeValue = timer.displayid;
     leftcol.appendChild(text);
     card.appendChild(leftcol);
@@ -54,9 +59,12 @@ function resetTimer(event) {
     update();
 }
 
-function killTimer() {
-    //remove timer from document and timer list
-    //add killer button to timer cards
+function killTimer(event) {
+    var BlackSpot = timers.findIndex(function (element) { return element.displayid == event.target.displayid; });
+    var obitualID = timers[BlackSpot].displayid;
+    timers.splice(BlackSpot, 1);
+    document.getElementById(obitualID).parentElement.parentElement.remove();
+    update()
 }
 
 function update() {
