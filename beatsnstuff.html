@@ -19,19 +19,9 @@
       width: 120px;
       height: auto;
       position: relative;
-      -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
-      -webkit-animation-duration: .08s; /* Safari 4.0 - 8.0 */
-      -webkit-animation-direction: reverse; /* Safari 4.0 - 8.0 */
       animation-name: example;
       animation-duration: .08s;
       animation-direction: reverse;
-  }
-
-  /* Safari 4.0 - 8.0 */
-  @-webkit-keyframes example {
-      0%   {width:120px; height:auto;}
-      50%  {width:115px; height:auto;}
-      100% {width:120px; height:auto;}
   }
 
   /* Standard syntax */
@@ -44,14 +34,11 @@
   .trns {
       width: 50px;
       height: 25px;
-      -webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
       transition: width 2s;
   }
 
   .trns:hover {
       width: 450px;
-      -ms-transform: translate(10px,0px); /* IE 9 */
-      -webkit-transform: translate(10px,0px); /* Safari */
       transform: translate(10px,0px); /* Standard syntax */
   }
 </style>

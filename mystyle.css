@@ -139,6 +139,29 @@ input{
   padding: 10px;
 }
 
+/* Shapes */
+.square {
+  height: 50px;
+  width: 50px;
+  border: solid 1px lightgreen;
+}
+.circle {
+  height: 50px;
+  width: 50px;
+  border: solid 1px lightgreen;
+  border-radius: 50%;
+}
+.triangle {
+	width: 0;
+	height: 0;
+	border-left: 25px solid transparent;
+	border-right: 25px solid transparent;
+	border-bottom: 50px solid #555;
+}
+
+
+
+
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbar {
   visibility: hidden; /* Hidden by default. Visible on click */
@@ -166,14 +189,31 @@ input{
 }
 
 /* Animations to fade the snackbar in and out */
+.show {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: freefadein 0.5s, freefadeout 0.5s 2.5s;
+  animation: freefadein 0.5s, freefadeout 0.5s 2.5s;
+}
+
+.apple {
+  width: 120px;
+  height: auto;
+  position: relative;
+  animation-name: example;
+  animation-duration: .08s;
+  animation-direction: reverse;
+}
+
 @-webkit-keyframes fadein {
   from {top: 0; opacity: 0;}
   to {top: 30px; opacity: 1;}
 }
 
-@keyframes fadein {
-  from {top: 0; opacity: 0;}
-  to {top: 30px; opacity: 1;}
+@-webkit-keyframes freefadein {
+  from {opacity: 0;}
+  to {opacity: 1;}
 }
 
 @-webkit-keyframes fadeout {
@@ -181,7 +221,22 @@ input{
   to {top: 0; opacity: 0;}
 }
 
-@keyframes fadeout {
-  from {top: 30px; opacity: 1;}
-  to {top: 0; opacity: 0;}
+@keyframes freefadeout {
+  from {opacity: 1;}
+  to {opacity: 0;}
+}
+/* Standard syntax */
+@keyframes example {
+0%   {width:120px; height:auto;}
+50%  {width:115px; height:auto;}
+100% {width:120px; height:auto;}
+}
+.trns {
+  width: 50px;
+  height: 25px;
+  transition: width 2s;
+}
+.trns:hover {
+  width: 450px;
+  transform: translate(10px,0px);
 }
