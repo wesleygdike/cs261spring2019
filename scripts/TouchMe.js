@@ -93,14 +93,13 @@ function dropOldPartical(item, index) {
 function Partical(x, y) {
     this.id = "Partical" + particalCount++;
     this.body = document.createElement("div");
-    this.body.id = this.id;
+    this.body.id = this.id; 
     this.body.style.position = "fixed";
     this.body.style.left = x + "px";
     this.body.style.top = y + "px";
     this.body.classList.add(selectedShape);
     this.body.style.border = "solid 1px " + color;
     document.body.appendChild(this.body);
-
     this.animate = function () {
         this.body.style.animationName = "freefadein, freefadeout";
         this.body.style.animationDuration = fade+"s";

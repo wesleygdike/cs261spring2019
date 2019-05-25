@@ -208,7 +208,7 @@ input{
   animation-duration: .08s;
   animation-direction: reverse;
 }
-
+ 
 @-webkit-keyframes fadein {
   from {top: 0; opacity: 0;}
   to {top: 30px; opacity: 1;}
