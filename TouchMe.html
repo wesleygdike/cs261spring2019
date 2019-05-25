@@ -14,21 +14,13 @@
 
     <div class="row">
         <div class="leftcolumn">
-            <div class="card" id="canvasholder">
-                <h2>TITLE HEADING</h2>
-                <h5>Title description, Dec 7, 2017</h5>
-                <div class="fakeimg" style="height:350px;">Image</div>
-                <p>Some text..</p>
-                <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco.</p>
-            </div>
-        </div>
-        <div class="rightcolumn">
             <div class="card">
                 <h2>Instructions</h2>
                 <h5>How to touch me correctly</h5>
-                <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+                <p>Click and drag <br>
+                    or <br>
+                    drag your finger accross the screen</p>
+                    <p style="font-size: 6px"> (if it is a touch screen... other wise it wont work)</p>
             </div>
             <div class="card">
                 <h3>Inputs</h3>
@@ -40,10 +32,30 @@
                 <div class="fakeimg" id="inputDisplayDrawing">Image</div>
             </div>
         </div>
-    </div>
-
-    <div class="footer">
-        <h2>Footer</h2>
+        <div class="rightcolumn">
+            <div class="card">
+                <h3>Settings</h3>
+                <p>Shape:</p>
+                <select name="shapeSetting" id="shapeSetting" class="fakeimg">
+                    <option value="square">Square</option>
+                    <option value="circle">Circle</option>
+                    <!--option value="triangle">Triangle</option-->
+                </select><br>
+                <p>Creation Rate:</p>
+                <input type="range" id="rateSetting" class="fakeimg" max="120" min="1"><br>
+                <p>Fade Rate:</p>
+                <input type="range" id="fadeSetting" class="fakeimg" max="7" min="1"><br>
+                <p>Color:</p>
+                <div class="fakeimg">
+                    <input type="color" id="colorSetting" value="#84cfe6">
+                    <p style="background: rgb(0, 0, 0, 0)">Turn the draw rate down to select a color. I didn't know how to fix it. </p>
+                </div>
+            </div>
+            <div class="card">
+                    <h2>Touch Tip</h2>
+                    <p style="font-size: 10px">you can use f12 to swap to tablet mode if you would like to simulate touches</p>
+                </div>
+        </div>
     </div>
 </body>
 

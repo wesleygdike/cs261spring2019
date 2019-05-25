@@ -144,19 +144,22 @@ input{
   height: 50px;
   width: 50px;
   border: solid 1px lightgreen;
+  background: rgba(0, 0, 0, 0)
 }
 .circle {
   height: 50px;
   width: 50px;
   border: solid 1px lightgreen;
   border-radius: 50%;
+  background: rgba(0, 0, 0, 0)
 }
 .triangle {
 	width: 0;
 	height: 0;
 	border-left: 25px solid transparent;
 	border-right: 25px solid transparent;
-	border-bottom: 50px solid #555;
+  border-bottom: 50px solid lightgreen;
+  background: rgba(0, 0, 0, 0)
 }
 
 
