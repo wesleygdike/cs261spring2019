@@ -99,11 +99,16 @@ function Partical(x, y) {
     this.body.style.top = y + "px";
     this.body.classList.add(selectedShape);
     this.body.style.border = "solid 1px " + color;
+    this.body.classList.add('transitionary');
     document.body.appendChild(this.body);
     this.animate = function () {
         this.body.style.animationName = "freefadein, freefadeout";
         this.body.style.animationDuration = fade+"s";
+        this.body.addEventListener("webkitAnimationStart", this.shrinkit);
         this.body.addEventListener("webkitAnimationEnd", this.killit);
+    }
+    this.shrinkit = function () {
+        document.getElementById(this.id).classList.add('small');
     }
     this.killit = function () {
         let blackSpot = particals.findIndex(function (element) { return element.id == this.id; })
