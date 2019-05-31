@@ -113,6 +113,9 @@ function Partical(x, y) {
     this.killit = function () {
         let blackSpot = particals.findIndex(function (element) { return element.id == this.id; })
         particals.splice(blackSpot, 1);
-        document.getElementById(this.id).remove();
+        let element = document.getElementById(this.id);
+        if(element != null) {
+            element.remove();
+        }
     }
 }
