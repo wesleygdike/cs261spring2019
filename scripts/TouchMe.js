@@ -11,6 +11,10 @@ var particalCount = 0;
 var selectedShape = "square";
 var color;
 var fade;
+var animate;
+var transition;
+var transform;
+
 
 function setup() {
     /* mouse and touch inputs */
@@ -25,14 +29,23 @@ function setup() {
     let rate = document.getElementById("rateSetting");
     let colorSelector = document.getElementById("colorSetting");
     let faderate = document.getElementById("fadeSetting");
+    let animateMe = document.getElementById("animateMe");
+    let transitionMe = document.getElementById("transitionMe");
+    let transformMe = document.getElementById("transformMe");
     selectedShape = shape.value;
     drawRate = rate.value;
     color = colorSelector.value;
     fade = faderate.value;
+    animate = animateMe.value;
+    transition = transitionMe.value;
+    transform = transformMe.value;
     shape.addEventListener("change", function(event) {selectedShape = event.target.value});
     rate.addEventListener("change", function(event) {drawRate = event.target.value});
     colorSelector.addEventListener("change", function(event) {color = event.target.value});
     faderate.addEventListener("change", function(event) {fade = event.target.value});
+    animateMe.addEventListener("change", function(event) {animate = event.target.value});
+    transitionMe.addEventListener("change", function(event) {transition = event.target.value});
+    transformMe.addEventListener("change", function(event) {alert(event.target.value); transform = event.target.value});
 }
 
 function drawing() {
@@ -52,7 +65,10 @@ function drawingAt(x, y) {
 
 function drawPartical(x, y) {
     let partical = new Partical(x, y);
-    partical.animate();
+    console.log('Animate: ' + animate + ', Transition: ' + transition + ', Transform: ' + transform);
+    if(animate) partical.animate();
+    if(transition) partical.transition();
+    if(transform) partical.transform();
     particals.push(partical);
 }
 
@@ -86,8 +102,8 @@ function Update() {
     drawing();
 }
 
-function dropOldPartical(item, index) {
-
+function randomPoint(number) {
+    return (Math.random() * 10) + number; 
 }
 
 function Partical(x, y) {
@@ -99,16 +115,21 @@ function Partical(x, y) {
     this.body.style.top = y + "px";
     this.body.classList.add(selectedShape);
     this.body.style.border = "solid 1px " + color;
-    this.body.classList.add('transitionary');
     document.body.appendChild(this.body);
     this.animate = function () {
+        //console.log('animate for ' + this.id + ' was executed');
         this.body.style.animationName = "freefadein, freefadeout";
         this.body.style.animationDuration = fade+"s";
-        this.body.addEventListener("webkitAnimationStart", this.shrinkit);
         this.body.addEventListener("webkitAnimationEnd", this.killit);
     }
-    this.shrinkit = function () {
-        document.getElementById(this.id).classList.add('small');
+    this.transition = function () {
+        //console.log('transision for ' + this.id + ' was executed');
+        this.body.classList.add('transitionary');
+        this.body.classList.add('small');
+    }
+    this.transform = function () {
+        //console.log('transform for ' + this.id + ' was executed');
+        this.body.style.transform = 'matrix(1,0,0,1,' + randomPoint(x) + ',' + randomPoint(y) + ')';
     }
     this.killit = function () {
         let blackSpot = particals.findIndex(function (element) { return element.id == this.id; })
