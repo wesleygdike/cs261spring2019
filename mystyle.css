@@ -1,14 +1,58 @@
-* {
+body {
+  background-color: #0d0e11;
+}
+
+div {
   background-color: #0d0e11; /* Dark Blue */
   font: 14px "Lucida Console", sans-serif;
   color: #84cfe6;
   box-sizing: border-box;
+}
+
+div:hover {
+  transform: scale(.999)
 }
 /*Page Grid Structure*/
 .header {
   padding: 30px;
   font-size: 40px;
   text-align: center;
+  background: #191b20;
+  
+}
+.topnav {
+  overflow: hidden;
+  background-color: #191b20;
+  position: relative;
+
+}
+
+.topnav #myLinks {
+  display: none;
+}
+
+.topnav a {
+  color: white;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+
+.topnav a.icon {
+  background: black;
+  display: block;
+  position: absolute;
+  float: left;
+}
+
+.topnav h2 {
+  text-align: center;
+}
+
+.topnav a:hover {
+  background-color: #558b9b;
+  color: black;
 }
 /* Create two unequal columns that floats next to each other */
 .leftcolumn {   
@@ -249,6 +293,7 @@ input{
 .transitionary {
   transition: all .5s;
 }
+
 .small {
   width: 5px;
   height: 5px;
